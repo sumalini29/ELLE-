@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DESSERTS - ELLE</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      border: 2px solid #d63384;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .recipe {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .recipe h2 {
+      color: #d63384;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>DESSERTS 🍨</h1>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for a dessert..." onkeyup="filterRecipes()">
+  </div>
+
+  <div id="recipes">
+    <div class="recipe">
+      
+      <div class="recipe">
+        <h2>Gulab Jamun</h2>
+        <p><strong>Ingredients:</strong> Khoya, all-purpose flour, sugar, water, cardamom, ghee.</p>
+        <p><strong>Procedure:</strong> Mix khoya and flour into a soft dough. Shape into small balls and deep-fry in ghee on low flame. Soak in warm sugar syrup flavored with cardamom and serve warm or chilled.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Rasgulla</h2>
+        <p><strong>Ingredients:</strong> Milk, lemon juice, sugar, water, cardamom.</p>
+        <p><strong>Procedure:</strong> Boil milk and curdle it using lemon juice. Drain and knead the chenna until smooth. Shape into balls and cook in boiling sugar syrup until spongy and light.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Carrot Halwa</h2>
+        <p><strong>Ingredients:</strong> Grated carrots, milk, sugar, ghee, cashews.</p>
+        <p><strong>Procedure:</strong> Cook grated carrots in milk until soft. Add sugar and stir until it thickens. Add ghee and roast cashews separately. Mix everything and serve warm.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Payasam</h2>
+        <p><strong>Ingredients:</strong> Vermicelli, milk, sugar, cardamom, ghee, cashews, raisins.</p>
+        <p><strong>Procedure:</strong> Roast vermicelli in ghee. Boil with milk until soft. Add sugar and cardamom, mix well. Fry cashews and raisins, add on top before serving.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Fruit Custard</h2>
+        <p><strong>Ingredients:</strong> Mixed fruits, custard powder, milk, sugar.</p>
+        <p><strong>Procedure:</strong> Dissolve custard powder in a little milk. Boil the remaining milk and add sugar. Mix in custard and stir until thick. Cool and add chopped fruits. Chill before serving.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Besan Ladoo</h2>
+        <p><strong>Ingredients:</strong> Gram flour, ghee, sugar, cardamom, nuts.</p>
+        <p><strong>Procedure:</strong> Roast gram flour in ghee on low flame until aromatic. Cool slightly and mix with powdered sugar and cardamom. Shape into round ladoos and garnish with nuts.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Rice Kheer</h2>
+        <p><strong>Ingredients:</strong> Rice, milk, sugar, cardamom, almonds, ghee.</p>
+        <p><strong>Procedure:</strong> Cook rice in milk on low flame until soft and thick. Add sugar and cardamom. Stir continuously. Garnish with chopped almonds roasted in ghee.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Chocolate Mousse</h2>
+        <p><strong>Ingredients:</strong> Dark chocolate, cream, sugar, vanilla.</p>
+        <p><strong>Procedure:</strong> Melt chocolate and let it cool. Whip cream with sugar and vanilla until fluffy. Fold in the melted chocolate gently. Chill for a few hours before serving.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Banana Sheera</h2>
+        <p><strong>Ingredients:</strong> Rava (semolina), banana, sugar, ghee, cardamom.</p>
+        <p><strong>Procedure:</strong> Roast rava in ghee. Add mashed banana and cook briefly. Pour in water and sugar, stir until smooth and thick. Add cardamom powder and serve warm.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Ice Cream Sandwich</h2>
+        <p><strong>Ingredients:</strong> Biscuits, vanilla ice cream, chocolate chips.</p>
+        <p><strong>Procedure:</strong> Scoop ice cream between two biscuits and press gently. Roll the edges in chocolate chips. Freeze for 15–20 minutes before serving.</p>
+      </div>
+  </div>
+
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+
+  <script>
+    function filterRecipes() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const recipes = document.querySelectorAll('.recipe');
+
+      recipes.forEach(recipe => {
+        const title = recipe.querySelector('h2').innerText.toLowerCase();
+        if (title.includes(input)) {
+          recipe.style.display = 'block';
+        } else {
+          recipe.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

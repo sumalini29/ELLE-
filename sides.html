@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Desserts - Herly</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      border: 2px solid #d63384;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .recipe {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .recipe h2 {
+      color: #d63384;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Desserts</h1>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for a sides..." onkeyup="filterRecipes()">
+  </div>
+
+  <div class="recipe">
+    <h2>Cabbage Stir Fry</h2>
+    <p><strong>Ingredients:</strong> Cabbage, mustard seeds, curry leaves, oil, salt.</p>
+    <p><strong>Procedure:</strong> Heat oil, add mustard seeds and curry leaves. Add chopped cabbage and salt. Cook on low flame until soft. Serve as a light side with rice.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Egg Bhurji</h2>
+    <p><strong>Ingredients:</strong> Eggs, onion, salt, oil, pepper.</p>
+    <p><strong>Procedure:</strong> Sauté chopped onions in oil. Crack eggs into the pan, add salt and pepper, and scramble gently. Cook until eggs are done and fluffy.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Boiled Vegetables</h2>
+    <p><strong>Ingredients:</strong> Carrot, beans, peas, salt, butter.</p>
+    <p><strong>Procedure:</strong> Boil vegetables until soft. Drain, add a pinch of salt and a small cube of butter. Toss and serve warm as a side dish.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Simple Chicken Fry</h2>
+    <p><strong>Ingredients:</strong> Boneless chicken, salt, pepper, oil.</p>
+    <p><strong>Procedure:</strong> Marinate chicken in salt and pepper. Shallow fry on medium heat until golden and cooked through. Serve hot.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Beetroot Poriyal</h2>
+    <p><strong>Ingredients:</strong> Beetroot, coconut, mustard seeds, oil, curry leaves.</p>
+    <p><strong>Procedure:</strong> Grate beetroot and cook in a pan with little water. Add salt, then temper with mustard seeds and curry leaves. Top with grated coconut and serve.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Curd with Cucumber</h2>
+    <p><strong>Ingredients:</strong> Curd, cucumber, salt, coriander.</p>
+    <p><strong>Procedure:</strong> Grate cucumber and mix with curd. Add salt and garnish with chopped coriander. Serve chilled with rice or paratha.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Potato Stir Fry</h2>
+    <p><strong>Ingredients:</strong> Potatoes, salt, oil, cumin seeds.</p>
+    <p><strong>Procedure:</strong> Heat oil and add cumin seeds. Add chopped boiled potatoes and salt. Fry until lightly crispy. Serve warm as a side.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Simple Fish Fry</h2>
+    <p><strong>Ingredients:</strong> Fish fillets, salt, turmeric, lemon juice, oil.</p>
+    <p><strong>Procedure:</strong> Marinate fish with salt, turmeric, and lemon. Pan-fry in oil on medium heat until golden. Serve hot with rice or salad.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Plain Omelette</h2>
+    <p><strong>Ingredients:</strong> Eggs, salt, pepper, oil.</p>
+    <p><strong>Procedure:</strong> Beat eggs with salt and pepper. Pour into a heated pan with oil. Cook both sides until done. Cut into strips and serve as a light side.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Steamed Broccoli</h2>
+    <p><strong>Ingredients:</strong> Broccoli, salt, olive oil.</p>
+    <p><strong>Procedure:</strong> Steam broccoli until just tender. Drizzle with olive oil and a pinch of salt before serving. Great with rice or pasta.</p>
+  </div>
+
+  
+    
+    
+  </div>
+
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+
+  <script>
+    function filterRecipes() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const recipes = document.querySelectorAll('.recipe');
+
+      recipes.forEach(recipe => {
+        const title = recipe.querySelector('h2').innerText.toLowerCase();
+        if (title.includes(input)) {
+          recipe.style.display = 'block';
+        } else {
+          recipe.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Desserts - Herly</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      border: 2px solid #d63384;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .recipe {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .recipe h2 {
+      color: #d63384;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>starterss</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for a dessert..." onkeyup="filterRecipes()">
+  </div>
+
+  <div class="recipe">
+    <h2>Paneer Tikka</h2>
+    <p><strong>Ingredients:</strong> Paneer cubes, yogurt, red chili powder, turmeric, garam masala, lemon juice, salt.</p>
+    <p><strong>Procedure:</strong> Mix yogurt with spices and lemon juice to make a marinade. Coat paneer cubes in the marinade and let them rest for 30 minutes. Skewer the pieces and grill or roast until golden brown and slightly charred.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Chicken 65</h2>
+    <p><strong>Ingredients:</strong> Boneless chicken, corn flour, chili powder, ginger-garlic paste, curry leaves, yogurt, oil.</p>
+    <p><strong>Procedure:</strong> Marinate chicken with spices and yogurt, then coat with corn flour. Deep fry until crispy. In a separate pan, temper curry leaves and toss the fried chicken in it for extra flavor.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Veg Spring Rolls</h2>
+    <p><strong>Ingredients:</strong> Spring roll wrappers, cabbage, carrots, capsicum, soy sauce, pepper, oil.</p>
+    <p><strong>Procedure:</strong> Sauté shredded vegetables with soy sauce and pepper. Let the mixture cool, fill into wrappers, roll tightly, and seal the edges. Deep fry until golden and serve hot with sauce.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Fish Fingers</h2>
+    <p><strong>Ingredients:</strong> Fish fillets, breadcrumbs, egg, lemon juice, pepper, salt.</p>
+    <p><strong>Procedure:</strong> Marinate fish with lemon juice, salt, and pepper. Dip in beaten egg, coat with breadcrumbs, and shallow or deep fry until crispy and golden brown.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Gobi Manchurian</h2>
+    <p><strong>Ingredients:</strong> Cauliflower florets, corn flour, all-purpose flour, soy sauce, garlic, chili sauce, oil.</p>
+    <p><strong>Procedure:</strong> Coat cauliflower in a spiced batter and deep fry until crispy. Toss in a pan with soy sauce, chili sauce, and garlic. Stir-fry for a few minutes and serve hot.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Chicken Lollipop</h2>
+    <p><strong>Ingredients:</strong> Chicken drumettes, soy sauce, ginger-garlic paste, red chili powder, corn flour, oil.</p>
+    <p><strong>Procedure:</strong> Marinate chicken with spices and soy sauce, then coat with corn flour. Deep fry until crispy. Serve with spicy sauce or dip of your choice.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Prawn Fry</h2>
+    <p><strong>Ingredients:</strong> Prawns, chili powder, turmeric, salt, lemon juice, rice flour, oil.</p>
+    <p><strong>Procedure:</strong> Marinate prawns in spices and lemon juice. Coat lightly with rice flour and shallow fry until crispy and cooked through. Serve hot.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Stuffed Mushrooms</h2>
+    <p><strong>Ingredients:</strong> Button mushrooms, cheese, garlic, bread crumbs, herbs.</p>
+    <p><strong>Procedure:</strong> Remove mushroom stems and fill the caps with a mixture of cheese, garlic, and herbs. Top with bread crumbs and bake until the cheese melts and the tops are golden.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Egg Devil</h2>
+    <p><strong>Ingredients:</strong> Boiled eggs, mashed potatoes, onion, spices, bread crumbs, oil.</p>
+    <p><strong>Procedure:</strong> Cut boiled eggs in halves. Wrap each half in spiced mashed potatoes, roll in bread crumbs, and deep fry until golden. Serve with ketchup or chutney.</p>
+  </div>
+  
+  <div class="recipe">
+    <h2>Cheese Corn Balls</h2>
+    <p><strong>Ingredients:</strong> Boiled corn, grated cheese, mashed potatoes, chili flakes, salt, bread crumbs, oil.</p>
+    <p><strong>Procedure:</strong> Mix corn, cheese, mashed potatoes, and spices to form a dough. Shape into balls, roll in bread crumbs, and deep fry until golden brown. Serve hot with sauce or dip.</p>
+  </div>
+  
+
+   
+    
+   
+  </div>
+
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+
+  <script>
+    function filterRecipes() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const recipes = document.querySelectorAll('.recipe');
+
+      recipes.forEach(recipe => {
+        const title = recipe.querySelector('h2').innerText.toLowerCase();
+        if (title.includes(input)) {
+          recipe.style.display = 'block';
+        } else {
+          recipe.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

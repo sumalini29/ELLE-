@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MAIN COURSES-ELLE</title>
+  <style>              
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      border: 2px solid #d63384;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .recipe {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .recipe h2 {
+      color: #d63384;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Desserts</h1>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for a main courses..." onkeyup="filterRecipes()">
+  </div>
+
+  <div id="recipes">
+
+    <div class="recipe">
+        <h2>Fresh Lemonade</h2>
+        <p><strong>Ingredients:</strong> Lemon, sugar, water, salt, mint leaves.</p>
+        <p><strong>Procedure:</strong> Squeeze lemon into a glass, add sugar, a pinch of salt, and cold water. Stir well and garnish with mint leaves. Serve chilled.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Banana Milkshake</h2>
+        <p><strong>Ingredients:</strong> Banana, milk, sugar, vanilla essence.</p>
+        <p><strong>Procedure:</strong> Blend banana with cold milk, sugar, and a few drops of vanilla essence. Pour into a glass and serve immediately.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Rose Milk</h2>
+        <p><strong>Ingredients:</strong> Chilled milk, rose syrup, sugar (optional).</p>
+        <p><strong>Procedure:</strong> Mix rose syrup into cold milk and stir well. Add sugar if needed. Serve chilled with ice cubes if desired.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Watermelon Juice</h2>
+        <p><strong>Ingredients:</strong> Watermelon, sugar, lemon juice, mint.</p>
+        <p><strong>Procedure:</strong> Blend watermelon chunks with a spoon of sugar and lemon juice. Strain and serve cold with mint on top.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Mango Lassi</h2>
+        <p><strong>Ingredients:</strong> Mango pulp, curd, sugar, cardamom.</p>
+        <p><strong>Procedure:</strong> Blend mango pulp with curd, sugar, and a pinch of cardamom. Serve chilled for a rich, creamy drink.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Cold Coffee</h2>
+        <p><strong>Ingredients:</strong> Instant coffee, milk, sugar, ice cubes.</p>
+        <p><strong>Procedure:</strong> Blend coffee, cold milk, sugar, and ice until frothy. Pour into a tall glass and serve immediately.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Orange Punch</h2>
+        <p><strong>Ingredients:</strong> Orange juice, soda, honey, mint.</p>
+        <p><strong>Procedure:</strong> Mix fresh orange juice with a spoon of honey. Add chilled soda and stir gently. Garnish with mint leaves.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Coconut Water Cooler</h2>
+        <p><strong>Ingredients:</strong> Tender coconut water, lemon juice, mint leaves.</p>
+        <p><strong>Procedure:</strong> Mix fresh coconut water with a few drops of lemon juice. Add crushed mint and serve cold.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Chikoo Milkshake</h2>
+        <p><strong>Ingredients:</strong> Chikoo (sapota), milk, sugar.</p>
+        <p><strong>Procedure:</strong> Blend peeled chikoo with chilled milk and sugar. Serve thick and cold in a tall glass.</p>
+      </div>
+      
+      <div class="recipe">
+        <h2>Strawberry Smoothie</h2>
+        <p><strong>Ingredients:</strong> Strawberries, yogurt, honey.</p>
+        <p><strong>Procedure:</strong> Blend fresh strawberries with thick yogurt and a spoon of honey. Serve chilled with a strawberry slice on top.</p>
+      </div>
+    
+
+    
+  </div>
+
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+
+  <script>
+    function filterRecipes() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const recipes = document.querySelectorAll('.recipe');
+
+      recipes.forEach(recipe => {
+        const title = recipe.querySelector('h2').innerText.toLowerCase();
+        if (title.includes(input)) {
+          recipe.style.display = 'block';
+        } else {
+          recipe.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

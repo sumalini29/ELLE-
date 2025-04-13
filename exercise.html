@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Herly Exercise Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffe6f0;
+      color: #4a2c2a;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2, h3 {
+      color: #d63384;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .icon-button {
+      display: inline-block;
+      margin: 15px;
+      padding: 20px;
+      background: #fff;
+      border: 2px solid #ff69b4;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 120px;
+    }
+
+    .icon-button:hover {
+      background: #ffd1e8;
+    }
+
+    .form-input {
+      margin: 10px;
+    }
+
+    input[type="number"], input[type="date"] {
+      padding: 10px;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 10px;
+      border: 1px solid #d63384;
+      background: #fff0f5;
+    }
+
+    button {
+      background-color: #d63384;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px 5px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #c2185b;
+    }
+
+    #output {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      border: 2px dashed #ff69b4;
+      max-width: 700px;
+      margin: auto;
+      text-align: left;
+    }
+
+    ul {
+      text-align: left;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 480px) {
+      .icon-button {
+        width: 90%;
+        font-size: 18px;
+      }
+
+      button {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1 -->
+  <div id="page1" class="page active">
+    <h2>✨ Welcome to Elle Fitness ✨</h2>
+    <div class="quote-box">
+      "She’s not just building a body, she’s building resilience."
+      </div>
+    <button onclick="goToPage('page2')">Start Exercise 💖</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div id="page2" class="page">
+    <h3>What’s Your Fitness Goal?</h3>
+    <div class="icon-button" onclick="selectGoal('Lose Weight')">🏃‍♀️<br>Lose Weight</div>
+    <div class="icon-button" onclick="selectGoal('Keep Fit')">🧘‍♀️<br>Keep Fit</div>
+    <div class="icon-button" onclick="selectGoal('Build Muscle')">🏋️‍♀️<br>Build Muscle</div>
+    <br>
+    <button onclick="goToPage('page1')">⬅ Back</button>
+  </div>
+
+  <!-- Page 3 -->
+  <div id="page3" class="page">
+    <h3>Focus Area 💪</h3>
+    <div class="icon-button" onclick="selectArea('Arm')">💪<br>Arm</div>
+    <div class="icon-button" onclick="selectArea('Butt')">🍑<br>Butt</div>
+    <div class="icon-button" onclick="selectArea('Full Body')">🧍‍♀️<br>Full Body</div>
+    <div class="icon-button" onclick="selectArea('Belly')">🧘‍♀️<br>Belly</div>
+    <div class="icon-button" onclick="selectArea('Leg')">🦵<br>Leg</div>
+    <br>
+    <button onclick="goToPage('page2')">⬅ Back</button>
+  </div>
+
+  <!-- Page 4 -->
+  <div id="page4" class="page">
+    <h3>Your Info 📝</h3>
+    <div class="form-input">
+      Height (cm): <br><input type="number" id="height">
+    </div>
+    <div class="form-input">
+      Weight (kg): <br><input type="number" id="weight">
+    </div>
+    <div class="form-input">
+      Age: <br><input type="number" id="age">
+    </div>
+    <div class="form-input">
+      Goal Date: <br><input type="date" id="goalDate">
+    </div>
+    <button onclick="generatePlan()">Generate Plan</button>
+    <br>
+    <button onclick="goToPage('page3')">⬅ Back</button>
+  </div>
+
+  <!-- Page 5 -->
+  <div id="page5" class="page">
+    <h3>💖 Your Personalized Plan 💖</h3>
+    <div id="output"></div>
+    <br>
+    <button onclick="goToPage('page4')">⬅ Back</button>
+  </div>
+
+  <script>
+    let userGoal = "";
+    let userArea = "";
+
+    const exercises = {
+      'Lose Weight': {
+        'Full Body': [
+          'Jumping Jacks – 30 sec', 'Mountain Climbers – 30 sec', 'Burpees – 15 reps',
+          'High Knees – 30 sec', 'Squat Jumps – 20 reps', 'Push-ups – 15 reps',
+          'Lunges – 20 reps', 'Plank – 30 sec', 'Skaters – 20 reps', 'Cool-down Stretch – 2 min'
+        ],
+        'Belly': [
+          'Crunches – 20 reps', 'Leg Raises – 15 reps', 'Plank – 30 sec',
+          'Russian Twists – 30 sec', 'Mountain Climbers – 30 sec', 'Bicycle Crunches – 30 sec',
+          'Flutter Kicks – 20 sec', 'V-ups – 15 reps', 'Toe Touches – 20 reps', 'Stretch – 2 min'
+        ],
+        'Leg': [
+          'Squats – 20 reps', 'Lunges – 15 reps each leg', 'Wall Sit – 30 sec',
+          'Jumping Jacks – 30 sec', 'Calf Raises – 20 reps', 'Step-ups – 15 each leg',
+          'Donkey Kicks – 15 each leg', 'Glute Bridges – 20 reps', 'Side Lunges – 15 each', 'Stretch – 2 min'
+        ]
+      },
+      'Keep Fit': {
+        'Full Body': [
+          'Brisk Walk – 5 min', 'Bodyweight Squats – 20 reps', 'Arm Circles – 30 sec',
+          'Side Lunges – 20 reps', 'Leg Swings – 20 reps', 'Knee Raises – 15 reps',
+          'Push-ups – 10 reps', 'Light Jog – 3 min', 'Jump Rope – 1 min', 'Stretch – 5 min'
+        ],
+        'Arm': [
+          'Arm Circles – 30 sec', 'Push-ups – 10 reps', 'Tricep Dips – 15 reps',
+          'Bicep Curls (bottle/weights) – 20 reps', 'Shoulder Press – 20 reps',
+          'Front Raise – 20 reps', 'Lateral Raise – 20 reps', 'Wall Push-ups – 15 reps',
+          'Overhead Stretch – 30 sec', 'Shake It Out – 1 min'
+        ],
+        'Belly': [
+          'Seated Twists – 30 sec', 'Plank – 30 sec', 'Crunches – 15 reps',
+          'Side Bends – 30 sec', 'Bicycle Kicks – 30 sec', 'Toe Touches – 20 reps',
+          'Hip Dips – 20 reps', 'Pelvic Tilts – 20 reps', 'Child’s Pose – 1 min', 'Stretch – 2 min'
+        ]
+      },
+      'Build Muscle': {
+        'Arm': [
+          'Push-ups – 20 reps', 'Bicep Curls – 15 each arm', 'Tricep Dips – 15 reps',
+          'Shoulder Press – 15 reps', 'Front Raise – 15 reps', 'Lateral Raise – 15 reps',
+          'Plank-to-Push-up – 10 reps', 'Arm Pulses – 30 sec', 'Wall Push-ups – 20 reps', 'Stretch – 2 min'
+        ],
+        'Butt': [
+          'Squats – 20 reps', 'Glute Bridges – 20 reps', 'Donkey Kicks – 15 reps each',
+          'Fire Hydrants – 15 reps each', 'Step-ups – 15 reps', 'Pulse Squats – 20 reps',
+          'Single-leg Glute Bridge – 10 reps each', 'Hip Thrusts – 15 reps', 'Side Lying Leg Raise – 15 reps', 'Stretch – 2 min'
+        ],
+        'Leg': [
+          'Lunges – 15 reps each leg', 'Squats – 20 reps', 'Calf Raises – 25 reps',
+          'Step-ups – 20 reps', 'Wall Sit – 45 sec', 'Jump Squats – 15 reps',
+          'Side Lunges – 15 reps each', 'Single-leg Deadlift – 10 each', 'Glute Bridge – 20 reps', 'Stretch – 2 min'
+        ]
+      }
+    };
+
+    function goToPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    function selectGoal(goal) {
+      userGoal = goal;
+      goToPage('page3');
+    }
+
+    function selectArea(area) {
+      userArea = area;
+      goToPage('page4');
+    }
+
+    function generatePlan() {
+      const height = document.getElementById('height').value;
+      const weight = document.getElementById('weight').value;
+      const age = document.getElementById('age').value;
+      const goalDate = document.getElementById('goalDate').value;
+
+      if (!height || !weight || !age || !goalDate) {
+        alert("Please fill in all fields!");
+        return;
+      }
+
+      const planList = (exercises[userGoal] && exercises[userGoal][userArea])
+        ? exercises[userGoal][userArea]
+        : ["Custom routine will be provided soon!"];
+
+      const summary = `
+        <strong>Goal:</strong> ${userGoal}<br>
+        <strong>Target Area:</strong> ${userArea}<br>
+        <strong>Height:</strong> ${height} cm<br>
+        <strong>Weight:</strong> ${weight} kg<br>
+        <strong>Age:</strong> ${age} years<br>
+        <strong>Goal Date:</strong> ${goalDate}<br><br>
+        <strong>Your 10-Step Workout:</strong><br>
+        <ul>${planList.map(ex => `<li>${ex}</li>`).join("")}</ul>
+      `;
+      document.getElementById('output').innerHTML = summary;
+      goToPage('page5');
+    }
+  </script>
+</body>
+</html>
+

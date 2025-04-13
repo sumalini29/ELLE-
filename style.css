@@ -1,0 +1,161 @@
+/* herly-style.css with cute animations */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #ffe0f0, #e0bbff);
+  color: #4b004b;
+  animation: fadeInBody 1.5s ease-in;
+}
+
+@keyframes fadeInBody {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+h1, h2, h3 {
+  color: #880088;
+  animation: fadeIn 1s ease-in;
+}
+
+.container {
+  padding: 30px;
+  text-align: center;
+}
+
+.card {
+  background-color: #fff0f8;
+  border: 2px solid #dda0dd;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 15px auto;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(136, 0, 136, 0.2);
+  animation: slideIn 0.7s ease;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+button {
+  background-color: #ff99cc;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px 0;
+  animation: popIn 0.6s ease;
+  transition: background-color 0.3s, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #e673c0;
+  transform: scale(1.05);
+}
+
+input, select, textarea {
+  padding: 10px;
+  border: 1px solid #d38ed6;
+  border-radius: 10px;
+  width: 90%;
+  margin: 10px 0;
+  font-size: 16px;
+  background-color: #fff5fb;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  vertical-align: middle;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+nav {
+  background-color: #ffccf2;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(136, 0, 136, 0.2);
+  text-align: center;
+}
+
+nav a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #800080;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ff66b2;
+}
+
+.quote-box {
+  background-color: #f8e0ff;
+  border-left: 5px solid #c94cd9;
+  padding: 15px;
+  font-style: italic;
+  margin: 20px auto;
+  max-width: 600px;
+  color: #660066;
+  border-radius: 10px;
+  animation: fadeIn 1s ease-in;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #ffccff;
+  text-align: center;
+  font-size: 14px;
+  color: #660066;
+}
+
+.task-completed {
+  text-decoration: line-through;
+  color: #999;
+  position: relative;
+}
+
+.task-completed::after {
+  content: '✈️';
+  position: absolute;
+  left: 300%;
+  animation: flyPlane 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes flyPlane {
+  0% { left: 100%; top: 0; }
+  100% { left: 200%; top: -50px; opacity: 0; }
+}
+

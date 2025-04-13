@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ELLE Journal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #ffe6f0;
+      font-family: 'Quicksand', sans-serif;
+      color: #d63384;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      color: #ff1493;
+    }
+
+    .journal-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff0f5;
+      padding: 25px;
+      border-radius: 40px;
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+    }
+
+    label, select, input, textarea, button {
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: inherit;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      background-color: #ffe6f0;
+      margin-top: 10px;
+    }
+
+    button {
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff1493;
+    }
+
+    .entry {
+      background: #fff;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .entry.selected {
+      border: 2px dashed #ff69b4;
+    }
+
+    .delete-icon {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1em;
+      color: #ff1493;
+      cursor: pointer;
+      display: none;
+    }
+
+    .entry.selected .delete-icon {
+      display: block;
+    }
+
+    .sticker-bar {
+      overflow-x: auto;
+      white-space: nowrap;
+      margin-top: 10px;
+    }
+
+    .sticker-btn {
+      font-size: 1.5em;
+      margin: 5px 3px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .controls label {
+      width: auto;
+      font-weight: bold;
+    }
+
+    .textarea-wrapper {
+      position: relative;
+    }
+
+    .mic-btn {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      font-size: 1em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ff1493;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      display: inline-block;
+      background: #ffc0cb;
+      padding: 10px 15px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #d63384;
+      font-weight: bold;
+    }
+    .quote-box{
+      text-align: center;
+      font-size: large;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="back-button" href="index.html">← Back</a>
+  <h1>Elle Journal</h1>
+  <div class="quote-box">
+    “A woman with a journal is a women discovering her soul.”
+   </div>
+  
+
+  <div class="journal-container">
+    <div class="controls">
+      <label for="fontSelect">Font:</label>
+      <select id="fontSelect" onchange="changeFont()">
+        <option value="'Quicksand', sans-serif">Quicksand</option>
+        <option value="'Pacifico', cursive">Pacifico</option>
+      </select>
+
+      <label for="bgColor">BG Color:</label>
+      <input type="color" id="bgColor" onchange="changeTheme()">
+
+      <label for="textColor">Text Color:</label>
+      <input type="color" id="textColor" onchange="changeTheme()">
+    </div>
+
+    <label for="entryDate">Date:</label>
+    <input type="date" id="entryDate">
+
+    <label for="journalHeading">Heading:</label>
+    <input type="text" id="journalHeading" placeholder="Title of your entry">
+
+    <label for="journalText">Write your journal:</label>
+    <div class="textarea-wrapper">
+      <textarea id="journalText" rows="6" placeholder="Start writing here..."></textarea>
+      <button class="mic-btn" onclick="startVoice()">🎙️</button>
+    </div>
+
+    <label>Stickers:</label>
+    <div class="sticker-bar">
+      <button class="sticker-btn" onclick="addSticker('🌸')">🌸</button>
+      <button class="sticker-btn" onclick="addSticker('✨')">✨</button>
+      <button class="sticker-btn" onclick="addSticker('❤️')">❤️</button>
+      <button class="sticker-btn" onclick="addSticker('⭐')">⭐</button>
+      <button class="sticker-btn" onclick="addSticker('🧸')">🧸</button>
+      <button class="sticker-btn" onclick="addSticker('☁️')">☁️</button>
+      <button class="sticker-btn" onclick="addSticker('😅')">😅</button>
+      <button class="sticker-btn" onclick="addSticker('😂')">😂</button>
+      <button class="sticker-btn" onclick="addSticker('🤣')">🤣</button>
+      <button class="sticker-btn" onclick="addSticker('😭')">😭</button>
+      <button class="sticker-btn" onclick="addSticker('🥲')">🥲</button>
+      <button class="sticker-btn" onclick="addSticker('🥹')">🥹</button>
+      <button class="sticker-btn" onclick="addSticker('🙂')">🙂</button>
+      <button class="sticker-btn" onclick="addSticker('🤐')">🤐</button>
+      <button class="sticker-btn" onclick="addSticker('🧐')">🧐</button>
+      <button class="sticker-btn" onclick="addSticker('🥶')">🥶</button>
+      <button class="sticker-btn" onclick="addSticker('😵‍💫')">😵‍💫</button>
+      <button class="sticker-btn" onclick="addSticker('😵')">😵</button>
+      <button class="sticker-btn" onclick="addSticker('😩')">😩</button>
+      <button class="sticker-btn" onclick="addSticker('😫')">😫</button>
+      <button class="sticker-btn" onclick="addSticker('🥵')">🥵</button>
+      <button class="sticker-btn" onclick="addSticker('🤕')">🤕</button>
+      <button class="sticker-btn" onclick="addSticker('🤮')">🤮</button>
+      <button class="sticker-btn" onclick="addSticker('🫩')">🫩</button>
+      <button class="sticker-btn" onclick="addSticker('😴')">😴</button>
+      <button class="sticker-btn" onclick="addSticker('🤒')">🤒</button>
+      <button class="sticker-btn" onclick="addSticker('😇')">😇</button>
+      <button class="sticker-btn" onclick="addSticker('😎')">😎</button>
+    </div>
+
+    <button onclick="saveEntry()">Save Entry</button>
+    <button onclick="loadAllEntries()">Show Entries</button>
+
+    <div id="displayEntry"></div>
+  </div>
+
+  <script>
+    function addSticker(sticker) {
+      const textarea = document.getElementById('journalText');
+      textarea.value += ' ' + sticker;
+    }
+
+    function saveEntry() {
+      const date = document.getElementById('entryDate').value;
+      const heading = document.getElementById('journalHeading').value.trim();
+      const text = document.getElementById('journalText').value.trim();
+      if (!date || !text) {
+        alert("Please fill both date and journal entry.");
+        return;
+      }
+      const key = `journal_${date}_${new Date().getTime()}`;
+      const value = JSON.stringify({ heading: heading, content: text });
+      localStorage.setItem(key, value);
+      alert("Entry saved!");
+      document.getElementById('journalText').value = '';
+      document.getElementById('journalHeading').value = '';
+    }
+
+    function loadAllEntries() {
+      const display = document.getElementById('displayEntry');
+      display.innerHTML = '';
+      const entries = [];
+
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith("journal_")) {
+          const value = JSON.parse(localStorage.getItem(key));
+          entries.push({ key: key, heading: value.heading, content: value.content });
+        }
+      }
+
+      entries.sort((a, b) => b.key.localeCompare(a.key));
+
+      entries.forEach(entry => {
+        const date = entry.key.split("_")[1];
+        const entryDiv = document.createElement("div");
+        entryDiv.className = "entry";
+        entryDiv.innerHTML = `
+          <button class="delete-icon" onclick="event.stopPropagation(); deleteEntry('${entry.key}')">🗑️</button>
+          <strong>${entry.heading || 'No Title'}</strong><br>
+          <em>${date}</em><br>
+          ${entry.content}
+        `;
+
+        entryDiv.addEventListener("click", function () {
+          const isSelected = entryDiv.classList.contains("selected");
+          document.querySelectorAll(".entry").forEach(e => e.classList.remove("selected"));
+          if (!isSelected) entryDiv.classList.add("selected");
+        });
+
+        display.appendChild(entryDiv);
+      });
+
+      if (entries.length === 0) {
+        display.innerHTML = "<div class='entry'>No journal entries found.</div>";
+      }
+    }
+
+    function deleteEntry(key) {
+      if (confirm("Delete this journal entry?")) {
+        localStorage.removeItem(key);
+        loadAllEntries();
+      }
+    }
+
+    function startVoice() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = function(event) {
+        const text = event.results[0][0].transcript;
+        document.getElementById('journalText').value += ' ' + text;
+      };
+
+      recognition.onerror = function(event) {
+        alert("Speech recognition error: " + event.error);
+      };
+
+      recognition.start();
+    }
+
+    function changeFont() {
+      const font = document.getElementById('fontSelect').value;
+      document.body.style.fontFamily = font;
+    }
+
+    function changeTheme() {
+      const bg = document.getElementById('bgColor').value;
+      const text = document.getElementById('textColor').value;
+      document.body.style.backgroundColor = bg;
+      document.body.style.color = text;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MAIN COURSES-ELLE</title>
+  <style>              
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      border: 2px solid #d63384;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .recipe {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .recipe h2 {
+      color: #d63384;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>MAIN COURSE 🍜</h1>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for a main courses..." onkeyup="filterRecipes()">
+  </div>
+
+  <div id="recipes">
+    <div class="recipe">
+      <h2>Egg Fried Rice</h2>
+      <p><strong>Ingredients:</strong> Cooked rice, eggs, spring onions, soy sauce, pepper, oil, salt.</p>
+      <p><strong>Procedure:</strong> Heat oil in a pan, scramble eggs until fluffy. Add chopped spring onions and sauté. Add rice, soy sauce, pepper, and salt. Stir-fry on high flame for a few minutes and serve hot.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Fish Fry with Rice</h2>
+      <p><strong>Ingredients:</strong> Fish slices, turmeric, chili powder, salt, lemon juice, cooked rice, oil.</p>
+      <p><strong>Procedure:</strong> Marinate fish with turmeric, chili powder, salt, and lemon juice. Shallow fry until golden and crisp. Serve hot with plain rice and onion slices on the side.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Vegetable Pulao</h2>
+      <p><strong>Ingredients:</strong> Basmati rice, carrots, beans, peas, onion, cumin seeds, bay leaf, ghee, salt.</p>
+      <p><strong>Procedure:</strong> Sauté cumin seeds and bay leaf in ghee. Add sliced onions and vegetables, cook briefly. Add soaked rice, water, and salt. Cook covered until rice is soft and vegetables are tender.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Chicken Roast with Rice</h2>
+      <p><strong>Ingredients:</strong> Chicken pieces, turmeric, chili powder, salt, lemon, oil, cooked rice.</p>
+      <p><strong>Procedure:</strong> Marinate chicken in turmeric, chili powder, salt, and lemon. Roast in a pan with oil until cooked and slightly crisp. Serve with plain rice and cucumber slices.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Curd Rice</h2>
+      <p><strong>Ingredients:</strong> Cooked rice, curd, mustard seeds, green chili, curry leaves, ginger, salt.</p>
+      <p><strong>Procedure:</strong> Mix rice with curd and salt. Heat oil, splutter mustard seeds, add chopped green chili, curry leaves, and grated ginger. Pour over curd rice, mix gently, and serve chilled or at room temperature.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Plain Paratha</h2>
+      <p><strong>Ingredients:</strong> Wheat flour, water, salt, ghee.</p>
+      <p><strong>Procedure:</strong> Knead flour with water and salt into a soft dough. Roll into flat rounds and cook on a hot tawa with ghee on both sides until golden. Serve hot with pickle or curd.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Boiled Egg Curry with Rice</h2>
+      <p><strong>Ingredients:</strong> Boiled eggs, onion, tomato, green chili, turmeric, oil, salt.</p>
+      <p><strong>Procedure:</strong> Sauté onions, green chili, and tomatoes in oil. Add turmeric and salt, cook into a gravy. Add boiled eggs and simmer for a few minutes. Serve hot with rice or chapati.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Paneer Rice</h2>
+      <p><strong>Ingredients:</strong> Cooked rice, paneer cubes, onion, tomato, turmeric, cumin, oil, salt.</p>
+      <p><strong>Procedure:</strong> Fry paneer cubes until golden. Sauté onions and tomatoes with cumin and turmeric. Mix in cooked rice and paneer, stir well, and serve hot with curd.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Chicken Rice Bowl</h2>
+      <p><strong>Ingredients:</strong> Cooked rice, grilled chicken, bell peppers, onion, soy sauce, pepper, oil.</p>
+      <p><strong>Procedure:</strong> Stir-fry sliced onions and bell peppers. Add grilled chicken pieces and cooked rice. Drizzle soy sauce and pepper. Mix well and serve in a bowl-style presentation.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Mixed Veg Chapati Roll</h2>
+      <p><strong>Ingredients:</strong> Wheat flour, carrots, cabbage, onion, green chili, lemon, salt, oil.</p>
+      <p><strong>Procedure:</strong> Sauté chopped vegetables with green chili and salt. Roll into chapatis and stuff with the cooked mixture. Add a squeeze of lemon, roll tightly, and serve warm.</p>
+    </div>
+
+
+  </div>
+
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+
+  <script>
+    function filterRecipes() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const recipes = document.querySelectorAll('.recipe');
+
+      recipes.forEach(recipe => {
+        const title = recipe.querySelector('h2').innerText.toLowerCase();
+        if (title.includes(input)) {
+          recipe.style.display = 'block';
+        } else {
+          recipe.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safety Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff3f3;
+    }
+    .section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      margin-top: 10px;
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    h1 {
+      color: #c1121f;
+      font-size: larger;
+      text-align: center;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>Safety Tools</h1>
+
+  <div class="section">
+    
+    <h3>SOS Alert</h3>
+    <p>Send your live location and alert trusted contacts instantly.</p>
+    <a class="box" href="sos.html">
+    <button onclick="sendSOS()">Activate SOS</button></div></body></a>
+  </div>
+  
+    
+  
+
+  <div class="section">
+    <h3>Safe Zone Map</h3>
+    <p>Shows nearby police stations, hospitals, and public places for safety.</p>
+    <button onclick="openSafeMap()">Open Safe Zone Map</button>
+  </div>
+
+  <div class="section">
+    <h3>Fake Call Trigger</h3>
+    <p>Triggers a loud fake call to help you escape dangerous situations.</p>
+    <button onclick="triggerFakeCall()">Trigger Fake Call</button>
+  </div>
+
+  <audio id="fakeCallSound" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+  <script>
+    function sendSOS() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          alert(`SOS Alert Sent!\nLocation: Latitude ${lat}, Longitude ${lon}`);
+          // Here, actual app should send data to trusted contacts
+        });
+      } else {
+        alert("Geolocation not supported.");
+      }
+    }
+
+    function openSafeMap() {
+      const googleMapsUrl = "https://www.google.com/maps/search/police+station+or+hospital+or+crowded+places+near+me";
+      window.open(googleMapsUrl, '_blank');
+    }
+
+    function triggerFakeCall() {
+      const sound = document.getElementById("fakeCallSound");
+      sound.play();
+      alert("Fake call triggered! Keep your phone visible to act convincingly.");
+    }
+  </script>
+</body>
+</html>

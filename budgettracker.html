@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Tracker</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input[type="number"], input[type="text"] {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .summary {
+      margin-top: 10px;
+    }
+    .quote-box{
+      text-align: center;
+      font-size: large;
+    }
+  </style>
+</head>
+<body>
+  <h1>Budget Tracker</h1>
+  <div class="quote-box">
+    "She tracks her coins like she builds her dreams—smart, steady, and strong."
+    </div>
+
+  <div class="section">
+    <h3>1. Enter Your Budget or Salary</h3>
+    <input type="number" id="budgetInput" placeholder="Enter your monthly budget">
+    <button onclick="setBudget()">Set Budget</button>
+    <div class="summary" id="budgetSummary"></div>
+  </div>
+
+  <div class="section">
+    <h3>2. Expenses</h3>
+    <input type="text" id="expenseName" placeholder="Expense name">
+    <input type="number" id="expenseAmount" placeholder="Amount">
+    <button onclick="addExpense()">Add Expense</button>
+    <ul id="expenseList"></ul>
+    <div class="summary" id="expenseSummary"></div>
+  </div>
+
+  <div class="section">
+    <h3>3. Previous Month Savings</h3>
+    <div id="savingsList"></div>
+  </div>
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+
+  <script>
+    let budget = 0;
+    let remaining = 0;
+    let expenses = [];
+    let savingsHistory = JSON.parse(localStorage.getItem('savingsHistory')) || [];
+
+    function setBudget() {
+      budget = parseFloat(document.getElementById('budgetInput').value);
+      remaining = budget;
+      expenses = [];
+      updateBudgetDisplay();
+      updateExpenseDisplay();
+    }
+
+    function addExpense() {
+      const name = document.getElementById('expenseName').value;
+      const amount = parseFloat(document.getElementById('expenseAmount').value);
+      if (!name || isNaN(amount)) return;
+      expenses.push({ name, amount });
+      remaining -= amount;
+      updateExpenseDisplay();
+    }
+
+    function updateBudgetDisplay() {
+      document.getElementById('budgetSummary').innerHTML = `
+        <strong>Total Budget:</strong> $${budget}<br>
+        <strong>Remaining:</strong> $${remaining}<br>
+        <strong>Used:</strong> ${((budget - remaining) / budget * 100).toFixed(1)}%
+      `;
+    }
+
+    function updateExpenseDisplay() {
+      const list = document.getElementById('expenseList');
+      list.innerHTML = '';
+      expenses.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.amount}`;
+        list.appendChild(li);
+      });
+      updateBudgetDisplay();
+    }
+
+    function displaySavingsHistory() {
+      const now = new Date();
+      const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+      const savingsDiv = document.getElementById('savingsList');
+      savingsDiv.innerHTML = savingsHistory.map(s => `<p>${s.month}: $${s.savings}</p>`).join('');
+    }
+
+    // Monthly reset and savings log
+    function checkMonthReset() {
+      const now = new Date();
+      const lastSavedMonth = localStorage.getItem('lastSavedMonth');
+      const currentMonth = `${now.getFullYear()}-${now.getMonth()}`;
+
+      if (lastSavedMonth !== currentMonth && budget > 0) {
+        savingsHistory.push({
+          month: new Date(now.getFullYear(), now.getMonth() - 1).toLocaleString('default', { month: 'long', year: 'numeric' }),
+          savings: remaining
+        });
+        localStorage.setItem('savingsHistory', JSON.stringify(savingsHistory));
+        localStorage.setItem('lastSavedMonth', currentMonth);
+        budget = 0;
+        remaining = 0;
+        expenses = [];
+        updateBudgetDisplay();
+        updateExpenseDisplay();
+      }
+      displaySavingsHistory();
+    }
+
+    // Initial check
+    checkMonthReset();
+  </script>
+</body>
+</html>

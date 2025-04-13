@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Outfit Check</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #ffe6f0;
+      font-family: 'Quicksand', sans-serif;
+      color: #d63384;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .page {
+      display: none;
+      padding: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .box {
+      background: #ffe6e6;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin: 50px auto;
+      width: 200px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px #888;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .search-container input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .icon {
+      font-size: 18px;
+      background: #ddd;
+      padding: 8px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .upload-btn {
+      margin: 40px 0 20px 0;
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+    }
+
+    .suggestions {
+      margin-top: 20px;
+    }
+
+    .suggestion-box {
+      background: #fff0f5;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .speak-btn {
+      background: #ffcccc;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+      float: right;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .option {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Homepage -->
+  <div id="homePage" class="page active">
+    <div class="box" onclick="goToOutfitCheck()">Outfit Check</div>
+  </div>
+
+  <!-- Outfit Check Page -->
+  <div id="outfitPage" class="page">
+    <centre><h2>Outfit Check</h2></centre>
+    <div class="quote-box">
+      "Style isn’t a look. It’s her signature."
+      </div>
+
+    <!-- Search -->
+    <div class="search-container">
+      <input type="text" id="queryInput" placeholder="Ask about outfit ideas..." onkeyup="handleQuery()">
+      <div class="icon" onclick="handleQuery()">🔍</div>
+    </div>
+
+    <!-- Image Upload -->
+    <div class="upload-btn">
+      <label>Upload Your Outfit:</label><br>
+      <input type="file" accept="image/*">
+    </div>
+
+    <!-- Suggestions -->
+    <div class="suggestions" id="suggestions"></div>
+  </div>
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+
+
+
+
+  <script>
+    function goToOutfitCheck() {
+      document.getElementById("homePage").classList.remove("active");
+      document.getElementById("outfitPage").classList.add("active");
+    }
+
+    function speak(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(msg);
+    }
+
+    function handleQuery() {
+      const input = document.getElementById("queryInput").value.toLowerCase();
+      const suggestions = document.getElementById("suggestions");
+      let options = [];
+
+      if (input.includes("summer")) {
+        options = [
+          "Light cotton kurti with white palazzos and sandals.",
+          "Sleeveless linen dress with a straw hat and tan slippers.",
+          "Pastel t-shirt with loose denim shorts and sneakers.",
+          "Cotton floral top with light beige skirt and flip-flops.",
+          "Linen jumpsuit in light yellow with white sneakers.",
+          "Breathable cotton tunic with leggings and flats.",
+          "Mint green crop top with flowy culottes.",
+          "Loose-fitting salwar in soft pink with cotton dupatta.",
+          "White blouse with airy maxi skirt in pastel blue.",
+          "Printed cotton saree with light blouse in peach shade."
+        ];
+      } else if (input.includes("winter")) {
+        options = [
+          "Woolen sweater with jeans and knee-length boots.",
+          "Long trench coat over turtleneck and warm leggings.",
+          "Thermal wear under kurti with wool shawl.",
+          "Hoodie with thick joggers and fleece socks.",
+          "Dark cardigan with plaid pants and gloves.",
+          "Overcoat with jeans, scarf and winter cap.",
+          "Wool kurta with full-sleeve blouse and long socks.",
+          "Sweatshirt with denim and ankle boots.",
+          "Thick anarkali suit layered with woolen dupatta.",
+          "Black leather jacket with maroon leggings."
+        ];
+      } else if (input.includes("rainy")) {
+        options = [
+          "Raincoat over crop top and quick-dry pants.",
+          "Waterproof jacket with ankle-length leggings.",
+          "Plastic poncho with slip-resistant shoes.",
+          "Full-sleeve top with short skirt and boots.",
+          "Rain-resistant hoodie with joggers.",
+          "Synthetic kurti and leggings with waterproof slippers.",
+          "Oversized shirt with shorts and umbrella.",
+          "Denim jacket with waterproof sneakers.",
+          "Trench-style raincoat with slim-fit jeans.",
+          "Rubber boots with long t-shirt dress."
+        ];
+      } else if (input.includes("spring")) {
+        options = [
+          "Pastel floral kurti with cotton leggings.",
+          "Soft rayon dress with printed scarf.",
+          "White blouse with pink floral skirt.",
+          "Mint green top with light blue trousers.",
+          "Peach anarkali suit with floral dupatta.",
+          "Off-shoulder dress in pastel lavender.",
+          "Light blue frock with white sandals.",
+          "Cotton blouse with linen pants.",
+          "Floral saree with lilac blouse.",
+          "Rayon jumpsuit in soft pink tones."
+        ];
+      } else if (input.includes("autumn")) {
+        options = [
+          "Wool sweater with corduroy pants and boots.",
+          "Layered tunic with scarf and flannel jacket.",
+          "Warm brown dress with ankle boots.",
+          "Knitted top with leggings and wool coat.",
+          "Long-sleeve kurti with warm leggings.",
+          "Beige trench with boots and checked scarf.",
+          "Corduroy skirt with cozy sweater.",
+          "Woolen pullover with cotton pants.",
+          "Orange-brown jumpsuit with fleece jacket.",
+          "Rust-colored anarkali with shawl."
+        ];
+      } else if (input.includes("temple")) {
+        options = [
+        "Simple cotton saree",
+        "Kurti with leggings",
+        "Anarkali suit",
+        "Full-sleeve blouse and skirt",
+        "Churidar with dupatta",
+        "Handloom salwar suit",
+        "Linen saree with elbow sleeve blouse",
+        "White kurta and pyjama",
+        "Printed cotton kurti",
+        "Floor length Indian gown"
+        ];
+      } else if (input.includes("saree") || input.includes("blouse")) {
+        options = [
+          "Royal blue saree with golden blouse.",
+          "Pastel pink saree with silver sequin blouse.",
+          "Green silk saree with maroon blouse.",
+          "White georgette saree with peach blouse.",
+          "Red saree with black boat-neck blouse.",
+          "Yellow cotton saree with floral print blouse.",
+          "Peach net saree with cream blouse.",
+          "Maroon velvet saree with gold blouse.",
+          "Orange saree with pink brocade blouse.",
+          "Navy saree with silver off-shoulder blouse."
+        ];
+      } else if (input.includes("party")) {
+        options = [
+        "Sequin mini dress with heels",
+        "Velvet jumpsuit with statement earrings",
+        "Metallic skirt with silk blouse",
+        "Crop top with palazzo pants",
+        "Bodycon dress with stilettos",
+        "Off-shoulder top with jeans and boots",
+        "Backless gown with clutch",
+        "Blazer dress with ankle boots",
+        "Leather pants with a sparkly top",
+        "Lace top with satin trousers"
+        ];
+      }else if (input.includes("date")) {
+        options = [
+          "Peach top with white skirt and nude heels.",
+          "Lace blouse with jeans and pastel sandals.",
+          "Black midi dress with denim jacket.",
+          "Floral saree with sleeveless blouse.",
+          "Crop top with pencil skirt and flats.",
+          "Chiffon kurti with leggings and bangles.",
+          "Off-shoulder dress in lavender shade.",
+          "Silk shirt with culottes and scarf.",
+          "Printed blouse with solid palazzos.",
+          "Maroon dress with nude makeup and boots."
+        ];
+      }else if (input.includes("date")) {
+        options = [
+          "Peach top with white skirt and nude heels.",
+          "Lace blouse with jeans and pastel sandals.",
+          "Black midi dress with denim jacket.",
+          "Floral saree with sleeveless blouse.",
+          "Crop top with pencil skirt and flats.",
+          "Chiffon kurti with leggings and bangles.",
+          "Off-shoulder dress in lavender shade.",
+          "Silk shirt with culottes and scarf.",
+          "Printed blouse with solid palazzos.",
+          "Maroon dress with nude makeup and boots."
+        ];
+      }
+
+      if (options.length === 0) {
+        options = [
+          "Please enter a more specific query like 'winter party outfit', 'spring saree', or 'date in summer'."
+        ];
+      }
+
+      let content = `<div class="suggestion-box">`;
+      options.forEach((opt) => {
+        content += `<div class="option">${opt}</div>`;
+      });
+      content += `<button class="speak-btn" onclick="speak(\`${options.join(' ')}\`)">Speak</button></div>`;
+      suggestions.innerHTML = content;
+    }
+  </script>
+</body>
+</html>

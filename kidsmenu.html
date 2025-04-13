@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KIDS MENU - ELLE</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #d63384;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 60%;
+      padding: 10px;
+      border: 2px solid #d63384;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .recipe {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .recipe h2 {
+      color: #d63384;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .back a {
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>KIDS MENU 👶</h1>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for a sides..." onkeyup="filterRecipes()">
+  </div>
+
+  <div id="recipes">
+    
+
+    <div class="recipe">
+      <h2>Mini Veg Sandwich</h2>
+      <p><strong>Ingredients:</strong> Bread slices, cucumber, tomato, butter, salt, pepper.</p>
+      <p><strong>Procedure:</strong> Spread butter on bread slices. Layer thinly sliced cucumber and tomato. Sprinkle salt and pepper. Cut into small triangles or fun shapes and serve fresh.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Cheesy Pasta</h2>
+      <p><strong>Ingredients:</strong> Boiled pasta, cheese, butter, milk, salt.</p>
+      <p><strong>Procedure:</strong> Melt butter, add milk and grated cheese, stir until smooth. Add boiled pasta and toss gently until coated. Serve warm with a little grated cheese on top.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Banana Pancakes</h2>
+      <p><strong>Ingredients:</strong> Banana, flour, milk, sugar, butter.</p>
+      <p><strong>Procedure:</strong> Mash banana and mix with flour, milk, and sugar. Pour batter on a hot pan with butter. Cook both sides until golden brown. Serve with honey or syrup.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Mini Idlis with Ghee</h2>
+      <p><strong>Ingredients:</strong> Mini idlis, ghee, salt, curry leaves.</p>
+      <p><strong>Procedure:</strong> Steam mini idlis. Toss them in warm ghee with a pinch of salt and curry leaves. Serve warm as a soft and tasty bite-sized snack.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Fruit Skewers</h2>
+      <p><strong>Ingredients:</strong> Apple, banana, grapes, watermelon, toothpicks or skewers.</p>
+      <p><strong>Procedure:</strong> Cut fruits into small chunks. Thread them onto skewers in a colorful pattern. Chill and serve with honey or a yogurt dip.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Veggie Fingers</h2>
+      <p><strong>Ingredients:</strong> Boiled potato, carrot, bread crumbs, salt, oil.</p>
+      <p><strong>Procedure:</strong> Mash potatoes and carrots, season with salt, and shape into fingers. Coat with breadcrumbs and shallow fry until crispy. Serve with tomato ketchup.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Mini Dosa Rolls</h2>
+      <p><strong>Ingredients:</strong> Dosa batter, cheese, butter.</p>
+      <p><strong>Procedure:</strong> Make small dosas on a tawa, spread a little butter and grated cheese. Roll them like a wrap and cut into bite-sized pieces. Serve warm.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Sweet Corn Chat</h2>
+      <p><strong>Ingredients:</strong> Boiled sweet corn, butter, salt, pepper, lemon.</p>
+      <p><strong>Procedure:</strong> Mix hot boiled corn with melted butter, salt, pepper, and a dash of lemon juice. Serve in paper cups for easy eating.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Chocolate Dipped Strawberries</h2>
+      <p><strong>Ingredients:</strong> Strawberries, melted chocolate.</p>
+      <p><strong>Procedure:</strong> Dip each strawberry into melted chocolate and place on a tray. Refrigerate until the chocolate sets. Serve cold as a treat.</p>
+    </div>
+    
+    <div class="recipe">
+      <h2>Mini Pizza Bites</h2>
+      <p><strong>Ingredients:</strong> Bread slices, cheese, tomato sauce, capsicum, corn.</p>
+      <p><strong>Procedure:</strong> Spread tomato sauce on bread, add chopped veggies and cheese. Toast in oven or tawa until cheese melts. Cut into small squares and serve.</p>
+    </div>
+  </div>
+
+  <div class="back">
+    <a href="index.html">&larr; Back to Menu</a>
+  </div>
+
+  <script>
+    function filterRecipes() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const recipes = document.querySelectorAll('.recipe');
+
+      recipes.forEach(recipe => {
+        const title = recipe.querySelector('h2').innerText.toLowerCase();
+        if (title.includes(input)) {
+          recipe.style.display = 'block';
+        } else {
+          recipe.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
